@@ -15,7 +15,6 @@ session_start();
    <link rel="stylesheet" href="bootstrap/ui/jquery-ui.css">
    <link rel="stylesheet" href="bootstrap/cust.css">
    <script src="bootstrap/ui/jquery-ui.js"></script>
-
      
    <!-----https://sourcecodesite.com/how-to-create-chat-system-in-php-using-ajax-2.html--->
    <!--Include Custom CSS-->
@@ -24,7 +23,6 @@ session_start();
    <script src="bootstrap/js/funciones_d.js"></script>
    --->
    <script>
-
    function cargar(div,desde)
    {
    $(div).load(desde);
@@ -49,7 +47,7 @@ pre {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('images/Diseño sin título.png');
+    background-image: url('images/b_bkg_3.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100%;
@@ -58,59 +56,7 @@ pre {
 }
 </style>
  </head>
- <script>
-    $(document).ready(function (e) {
-      var conn = new WebSocket("ws://localhost:9000");
-      
-      var getusuario = $("#sessionusuario").text().split(" | ");
-      conn.onopen = function (e) { //si la conexion es existossa
-      console.log(e.data);
-      console.log("Iniciado");
-      if(getusuario[0] == "" && getusuario[1] == "")
-      {
-        var role = "Indefinido";
-        var name = "Anonimo";
-        var datos = {"usuario": name,"role": role};
-        conn.send(JSON.stringify(datos));
-      }
-      else
-      {
-        var role = getusuario[0];
-        var name = getusuario[1];
-        var datos = {"usuario": name,"role": role};
-        conn.send(JSON.stringify(datos));
-      }
-      };
-    
-      conn.onmessage = function (e) {
-
-          var respuesta = JSON.parse(e.data); //recibimos la respuesta y como es json la parseamos
-          if(respuesta.usersize !== undefined){
-            console.log(respuesta.usersize);
-            $("#usercount").text("Conectados: " + respuesta.usersize);
-          }
-
-          if(respuesta.usuario !== undefined || respuesta.role !== undefined)
-          {
-          console.log("Usuario: " + respuesta.usuario + " Rol: " + respuesta.role);
-          if(respuesta.usuario == undefined || respuesta.role == undefined)
-          {
-            respuesta.usuario = "Anonimo";
-            respuesta.role = " ";
-          }
-          $("#aviso").text(respuesta.role + " " + respuesta.usuario +" ha iniciado sesion");
-          }
-      
-
-        
-      };
-      
-      conn.onclose = function(e){
-        console.log("Adios");
-      };
-
-    });
-</script>
+ 
  <!-----body style="padding: 0px 0px 0px 0px;background-image: url(images/b_bkg_4.jpg);" onload="cargar('#capa_P','txts/init_1.html');cargar('#capa_C','txts/init_2.html')"---->
  <body style="padding: 0px 0px 0px 0px;"  >
   <div id="background"></div>
@@ -126,23 +72,16 @@ pre {
 		if (isset($_SESSION['username']) && $_SESSION['rol']=='administrador'){
 		 echo '<li><a href="abm_p.php">Usuarios</a></li>';
 		 echo '<li><a href="abm_c.php">Carteles</a></li>';
-     echo '<li><a href="prestamos.php">Prestamos</a></li>';
 		}
 		?>
-    
-          <li><a href="nuevo.php">Ayuda</a></li>
 	  
 	  
 	  </ul>
 	  <ul class="nav navbar-nav navbar-right" style="padding-right: 10px;">
       
 	  <?php 
-    if(isset($_SESSION['username']) && $_SESSION['rol']=='administrador'){
-      echo ' <p id="usercount" style="float:left;padding-right:40px">Conectados: 0</p>';
-      echo ' <p id="aviso" style="float:left;padding-right:40px"></p>';
-    }
 	  if (isset($_SESSION['username'])) {
-	  echo ' <li id="sessionusuario" "class="navbar-brand">'.$_SESSION['rol'].' | '.$_SESSION['username'].'</li>'; 
+	  echo ' <li class="navbar-brand">'.$_SESSION['rol'].' : '.$_SESSION['username'].'</li>'; 
       }
 	  ?>
 	  
@@ -162,7 +101,6 @@ pre {
 	        <li><a href="logout.php" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
              ';
 	       }
-         
 ?>		   
 	</ul>
 	  
@@ -201,6 +139,5 @@ pre {
 
 
 </div>
-
  
 </body>

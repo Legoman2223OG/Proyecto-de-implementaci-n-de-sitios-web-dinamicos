@@ -46,3 +46,4 @@ echo "<script>";
 echo "cargar('#capa_C','mostrar_cartelera.php?b=Portada');";
 echo "</script>";
 ?>
+

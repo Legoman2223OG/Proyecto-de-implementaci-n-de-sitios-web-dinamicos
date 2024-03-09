@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>autocomplete demo</title>
+  
+
+  <link rel="stylesheet" href="bootstrap/ui/jquery-ui.css">
+  <script src="bootstrap/js/jquery-3.1.0.min.js"></script>
+  <script src="bootstrap/ui/jquery-ui.js"></script>
+   
+</head>
+<body>
+ 
+<label>Select a programming language: </label>
+<input id="autocomplete">
+ 
+<script>
+$( "#autocomplete" ).autocomplete({
+  source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
+});
+</script>
+ 
+</body>
+</html>

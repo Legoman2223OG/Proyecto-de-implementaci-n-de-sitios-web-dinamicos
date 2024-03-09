@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
--- https://www.phpmyadmin.net/
+-- version 4.6.0
+-- http://www.phpmyadmin.net
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 22-11-2021 a las 00:04:37
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.2.33
+-- Servidor: localhost:3306
+-- Tiempo de generación: 09-06-2020 a las 10:41:39
+-- Versión del servidor: 5.5.49
+-- Versión de PHP: 5.5.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -31,16 +30,16 @@ CREATE TABLE `carteles` (
   `id_cartel` int(11) NOT NULL,
   `categoria` varchar(25) NOT NULL DEFAULT '''AGENDA''',
   `titulo` text NOT NULL,
-  `texto` text DEFAULT NULL,
+  `texto` text,
   `imagen` varchar(128) DEFAULT NULL,
-  `plantilla` int(11) DEFAULT 1,
+  `plantilla` int(11) DEFAULT '1',
   `v_desde` varchar(20) DEFAULT NULL,
   `v_hasta` varchar(20) DEFAULT NULL,
-  `activo` int(11) NOT NULL DEFAULT 1,
+  `activo` int(11) NOT NULL DEFAULT '1',
   `link` varchar(128) DEFAULT NULL,
-  `texto1` text DEFAULT NULL,
-  `texto2` text DEFAULT NULL,
-  `imagen1` text DEFAULT NULL
+  `texto1` text,
+  `texto2` text,
+  `imagen1` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -65,8 +64,7 @@ INSERT INTO `carteles` (`id_cartel`, `categoria`, `titulo`, `texto`, `imagen`, `
 (17, 'Musica', 'Jimi» Hendrix ', 'James Marshall «Jimi» Hendrix (nacido Johnny Allen Hendrix ) fue un guitarrista, cantante y compositor estadounidense. A pesar de que su carrera solo duró cuatro años, es considerado uno de los guitarristas más influyentes de la historia del rock y uno de los músicos más famosos del siglo XX. El Salón de la Fama del Rock and Roll le describe como «indiscutiblemente el músico más grande de la historia del rock».1', 'Jimi_Hendrix_1967.png', 3, '27 de noviembre de 1', '18 de septiembre de ', 1, '', 'James Marshall «Jimi» Hendrix (nacido Johnny Allen Hendrix ) fue un guitarrista, cantante y compositor estadounidense. A pesar de que su carrera solo duró cuatro años, es considerado uno de los guitarristas más influyentes de la historia del rock y uno de los músicos más famosos del siglo XX. El Salón de la Fama del Rock and Roll le describe como «indiscutiblemente el músico más grande de la historia del rock».1', 'James Marshall «Jimi» Hendrix (nacido Johnny Allen Hendrix ) fue un guitarrista, cantante y compositor estadounidense. A pesar de que su carrera solo duró cuatro años, es considerado uno de los guitarristas más influyentes de la historia del rock y uno de los músicos más famosos del siglo XX. El Salón de la Fama del Rock and Roll le describe como «indiscutiblemente el músico más grande de la historia del rock».1', ''),
 (19, 'Deportes', 'Copa Libertadores', '		   ', 'cuerpo.jpg', 0, '', '', 1, '', '		   ', '		   ', 'header.png'),
 (20, 'Deportes', 'COPA ARGENTINA', '	PARTICIPAN TODAS LAS CAtegorias de la afa	   ', '', 2, 'SEMIFIANL ATL TUCUMA', 'LANUS', 1, 'http://www.afa.com', '		   ', '		   ', 'cumple.png'),
-(21, 'Portada', 'HOLA MUNDO', '		   ', '', 0, '', '', 0, '', '		   ', '		   ', ''),
-(23, 'Videojuegos', 'Videojuego Slime', 'Se trata de un juego plataformero hecho en unity', 'Idle.png', 0, '28/4/2021', '31/5/2021', 1, '', 'Chloe se pierde con su equipo en un bosque malvado lleno de criaturas que les quieren hacer cualquier tipo de daño y usarlos para su proposito, por lo tanto embarcan por el bosque hasta poder buscar respuestas del mismo y escapar de el.', 'Chloe puede absorber enemigos y usar sus poderes para poder derrotar a los enemigos mas facil, y si no tiene ataca con su latigo hecho de su baba corporal', '2ca6a523fcac129405d09374ce4e74e7.jpg');
+(21, 'Portada', 'HOLA MUNDO', '		   ', '', 0, '', '', 0, '', '		   ', '		   ', '');
 
 -- --------------------------------------------------------
 
@@ -78,7 +76,7 @@ CREATE TABLE `chat` (
   `id` int(50) NOT NULL,
   `name` varchar(255) NOT NULL,
   `msg` varchar(255) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT current_timestamp()
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -95,9 +93,7 @@ INSERT INTO `chat` (`id`, `name`, `msg`, `date`) VALUES
 (7, 'lp', 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', '2020-06-06 01:45:54'),
 (8, 'cm', 'aca andams. ...\r\n', '2020-06-06 01:46:11'),
 (9, 'lp', 'bien ahí ', '2020-06-06 01:46:22'),
-(10, 'cm', 'sdf sdfsdff asdf asdf df\r\nsad asdf  asdfasdf dsfa sdf\r\n adfasdf asdfa sdf  asdf\r\n asdf asdf', '2020-06-06 01:46:55'),
-(11, 'lp', 'Lol', '2021-04-08 22:08:09'),
-(12, 'lp', 'Re izi pisi gg eze tu vieja en bici jsjsjsjs', '2021-10-21 22:09:36');
+(10, 'cm', 'sdf sdfsdff asdf asdf df\r\nsad asdf  asdfasdf dsfa sdf\r\n adfasdf asdfa sdf  asdf\r\n asdf asdf', '2020-06-06 01:46:55');
 
 -- --------------------------------------------------------
 
@@ -243,9 +239,7 @@ INSERT INTO `libros_d` (`id_libro`, `Autor`, `Titulo`, `edicion`, `año`, `orige
 (41, 'Aldous Huxley', 'Música en la noche', '', '', '', '', '', '', 'música_en_la_noche.pdf', 'Libro'),
 (42, 'Ernest Hemingway', 'Tener y No Tener', '', '', '', '', '', '', 'tener_y_no_tener.pdf', 'Libro'),
 (43, 'H. G. Wells', 'Tono – Bungay', '', '', '', '', '', '', 'tono-bungay.pdf', 'Libro'),
-(44, 'Ernest Hemingway', 'Tener y No Tener', '', '', '', '', '', '', 'tener_y_no_tener.pdf', 'Libro'),
-(45, 'Basadito', 'El basado', 'Menerga', '1993', 'Gringo', 'Enie', 'Gringonia', 'El satch', 'video0 (1).mov', 'Libro'),
-(46, 'Cocolinas', 'cacatua', 'Oeoeo', '1995', 'Adelan', 'Cocomelon', 'CAca', 'dasdasdsad', 'Eyopepepops.mp4', 'Video');
+(44, 'Ernest Hemingway', 'Tener y No Tener', '', '', '', '', '', '', 'tener_y_no_tener.pdf', 'Libro');
 
 -- --------------------------------------------------------
 
@@ -407,28 +401,6 @@ INSERT INTO `personas` (`id`, `nombre`, `apellido`, `sexo`, `dni`, `carrera`, `t
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `prestamos`
---
-
-CREATE TABLE `prestamos` (
-  `id_prestamo` int(11) NOT NULL,
-  `id_estudiante` int(11) NOT NULL,
-  `id_libro` int(11) NOT NULL,
-  `fecha_retiro` date NOT NULL,
-  `fecha_entrega` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `prestamos`
---
-
-INSERT INTO `prestamos` (`id_prestamo`, `id_estudiante`, `id_libro`, `fecha_retiro`, `fecha_entrega`) VALUES
-(3, 4, 4, '2021-11-23', '1970-01-01'),
-(8, 1, 3, '2021-11-23', '2021-11-23');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -497,12 +469,6 @@ ALTER TABLE `personas`
   ADD UNIQUE KEY `user` (`user`);
 
 --
--- Indices de la tabla `prestamos`
---
-ALTER TABLE `prestamos`
-  ADD PRIMARY KEY (`id_prestamo`);
-
---
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -516,51 +482,37 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `carteles`
 --
 ALTER TABLE `carteles`
-  MODIFY `id_cartel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
+  MODIFY `id_cartel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT de la tabla `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `estudiante`
 --
 ALTER TABLE `estudiante`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
-
 --
 -- AUTO_INCREMENT de la tabla `libros_d`
 --
 ALTER TABLE `libros_d`
-  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
-
+  MODIFY `id_libro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT de la tabla `log_user`
 --
 ALTER TABLE `log_user`
   MODIFY `id_log` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
-
 --
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
-
---
--- AUTO_INCREMENT de la tabla `prestamos`
---
-ALTER TABLE `prestamos`
-  MODIFY `id_prestamo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

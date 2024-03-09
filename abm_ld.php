@@ -2,10 +2,6 @@
 include_once("libreria/motor.php");
 include_once("libreria/libro_d.php");
 
-function log_to_console($msg)
-{
-    echo "<script> console.log('$msg'); </script>";
-}
 
 $datos = new Libro_d();
 $libro_d = new Libro_d();
@@ -41,11 +37,11 @@ function PonerNombreArchivo(){
 ';
 
 if (!empty($_POST)) {
-    log_to_console(str_replace("\n", " ", print_r($_POST, true)));
-    log_to_console(str_replace("\n", " ", print_r($_GET, true)));
+
     $operacion = isset($_GET['operacion']) ? $_GET['operacion'] : 'alta' ;
 	//echo $operacion;
 	if ($operacion == 'alta' && !isset($_GET['id_lib'])){
+	    echo '1-alta';
 		$libro_d->autor=$_POST['txtAutor'];
 		$libro_d->titulo=$_POST['txtTitulo'];
 		$libro_d->edicion=$_POST['txtEdicion'];
@@ -59,6 +55,7 @@ if (!empty($_POST)) {
 		$libro_d->guardar($objConexion->enlace);
 	}
 	if ($operacion == 'actualizar' && isset($_GET['id_lib'])){
+	    echo '2-actualizar';
 		$libro_d->autor=$_POST['txtAutor'];
 		$libro_d->titulo=$_POST['txtTitulo'];
 		$libro_d->edicion=$_POST['txtEdicion'];
@@ -71,6 +68,7 @@ if (!empty($_POST)) {
 		$libro_d->archivo=$_POST['txtArchivo'];
 		
 		$libro_d->actualizar($objConexion->enlace,$_GET['id_lib']);
+		header("Location: ".$_SERVER['PHP_SELF']);
 	}
 	if ($operacion == 'borrar' && isset($_GET['id_lib'])){
 	    //echo '3-eliminar';
@@ -93,40 +91,23 @@ if (!empty($_POST)) {
 		$materia=$A['materia'];
 		$comentario=$A['comentario'];
 		$archivo=$A['archivo'];
-
+		
 		//$accion=$_SERVER['HTTP_REFERER'].'?operacion=actualizar&id_lib='. $id;
 		//$btn_txt='Actualizar';
 		//$leyenda='Modificar datos ';
     }
-
-    if ($operacion == 'prestar' && isset($_GET['id_lib']))
-    {
-        $magnitud;
-        switch($_POST['magnitud_tiempo'])
-        {
-            case "dia":
-                $magnitud = "D";
-                break;
-            case "semana":
-                $magnitud = "W";
-                break;
-            case "mes":
-                $magnitud = "M";
-                break;
-            
-            }
-        $fecha_devolucion = (new DateTime())->add(new DateInterval("P{$_POST['cantidad_tiempo']}$magnitud"))->format("Y-m-d");
-        $query1 = "UPDATE libros_d SET prestado = 1 WHERE libros_d.id_libro = {$_GET['id_lib']}";
-        $query2 = "INSERT INTO prestamos_libros(fecha_devolucion, libro_prestado, receptor_prestamo) VALUES ('$fecha_devolucion', {$_GET['id_lib']}, {$_POST['receptor']})";
-
-        mysqli_query($objConexion->enlace, $query1);
-        mysqli_query($objConexion->enlace, $query2);
-    }
+   
+	
+	
+	
+		
+    
 }
+
 
 ?>
 <script src="bootstrap/js/funciones_d.js"></script>
-<link rel="stylesheet" href="bootstrap/css/estilos.css">
+
 <div class="container-fluid">
    <nav class="navbar navbar-default " role="navigation" >
     

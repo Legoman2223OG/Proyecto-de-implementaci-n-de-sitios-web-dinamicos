@@ -32,8 +32,8 @@ if ($_FILES["fileToUpload"]["size"] > 12524288) {
 }
 // Allow certain file formats
 if($imageFileType != "pdf" && $imageFileType != "txt" && $imageFileType != "docx"
-&& $imageFileType != "doc" && $imageFileType != "mp4" && $imageFileType != "mp3" && $imageFileType != "mov" && $imageFileType != "ogg") {
-    $errors[]= "Lo sentimos, sólo archivos PDF, TXT, MP4, MP3, MOV, OGG, DOCX & DOC  son permitidos.";
+&& $imageFileType != "doc" ) {
+    $errors[]= "Lo sentimos, sólo archivos PDF, TXT, DOCX & DOC  son permitidos.";
     $uploadOk = 0;
 }
 // Check if $uploadOk is set to 0 by an error
