@@ -1,0 +1,1 @@
+"C:\xampp\php\php.exe" -q C:\xampp\htdocs\bib-t1\servidor.php
